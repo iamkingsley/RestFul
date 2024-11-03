@@ -1,6 +1,5 @@
 ﻿
 using DemoApp.Application.Features.Products.Commands.AddProduct;
-using DemoApp.Domain.Entities;
 
 namespace DemoApp.Application.Mappings;
 

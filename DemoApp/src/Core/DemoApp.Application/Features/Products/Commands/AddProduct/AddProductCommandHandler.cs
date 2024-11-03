@@ -1,7 +1,4 @@
 ﻿
-using DemoApp.Application.Interfaces.Repositories;
-using DemoApp.Domain.Entities;
-
 namespace DemoApp.Application.Features.Products.Commands.AddProduct;
 
 public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Result<int>>
