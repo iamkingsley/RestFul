@@ -1,5 +1,6 @@
 ﻿
 using DemoApp.Application.Features.Products.Queries.GetAllProducts;
+using System.Net;
 
 namespace DemoApp.Api.Controllers;
 
@@ -15,7 +16,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ProductResponse>), 200)]
+    [ProducesResponseType(typeof(IEnumerable<ProductResponse>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetAll()
     {
         var result = await this._sender.Send(new GetAllProductsQuery());
@@ -23,6 +24,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(int), (int)HttpStatusCode.Created)]
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
     {
         var result = await this._sender.Send(command);
