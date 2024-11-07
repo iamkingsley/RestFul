@@ -16,7 +16,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ProductResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(BaseResponse<IEnumerable<ProductResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
     {
         var result = await this._sender.Send(new GetAllProductsQuery());
@@ -29,8 +29,8 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(int), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(BaseResponse<int>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(BaseResponse<int>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
     {
         var result = await this._sender.Send(command);
