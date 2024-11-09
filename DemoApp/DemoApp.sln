@@ -7,21 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BDA21AC9-970
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6D718279-FB94-485E-88E9-3546B91DDA8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Domain", "src\Core\DemoApp.Domain\DemoApp.Domain.csproj", "{23570081-6E91-49F9-8D18-B944AD406617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Domain", "src\Core\DemoApp.Domain\DemoApp.Domain.csproj", "{23570081-6E91-49F9-8D18-B944AD406617}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Application", "src\Core\DemoApp.Application\DemoApp.Application.csproj", "{8BDA7473-5DDF-422C-AC1E-379EFEFDFB36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Application", "src\Core\DemoApp.Application\DemoApp.Application.csproj", "{8BDA7473-5DDF-422C-AC1E-379EFEFDFB36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Contracts", "src\Core\DemoApp.Contracts\DemoApp.Contracts.csproj", "{602324DF-3202-4D91-AE38-2F15BF7EFB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Contracts", "src\Core\DemoApp.Contracts\DemoApp.Contracts.csproj", "{602324DF-3202-4D91-AE38-2F15BF7EFB93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E0CC38A6-4672-46AB-8354-9476FB6F8ED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Api", "src\Presentation\DemoApp.Api\DemoApp.Api.csproj", "{E3C4B5C9-EB93-4408-9DB3-E9CFE5259620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Api", "src\Presentation\DemoApp.Api\DemoApp.Api.csproj", "{E3C4B5C9-EB93-4408-9DB3-E9CFE5259620}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F99CB978-D076-44F3-ABEB-9EE333F79024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Packages", "src\DemoApp.Packages\DemoApp.Packages.csproj", "{CEEB70F8-D15B-459D-91B3-C16484266580}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Packages", "src\DemoApp.Packages\DemoApp.Packages.csproj", "{CEEB70F8-D15B-459D-91B3-C16484266580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Persistence", "src\Infrastructure\DemoApp.Persistence\DemoApp.Persistence.csproj", "{906BED8C-A15C-413A-8E4F-AF6424F2010D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp.Persistence", "src\Infrastructure\DemoApp.Persistence\DemoApp.Persistence.csproj", "{906BED8C-A15C-413A-8E4F-AF6424F2010D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Identity", "src\Infrastructure\DemoApp.Identity\DemoApp.Identity.csproj", "{3460A9CF-5511-4E15-A995-DC985C41DBED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{906BED8C-A15C-413A-8E4F-AF6424F2010D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{906BED8C-A15C-413A-8E4F-AF6424F2010D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{906BED8C-A15C-413A-8E4F-AF6424F2010D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3460A9CF-5511-4E15-A995-DC985C41DBED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3460A9CF-5511-4E15-A995-DC985C41DBED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3460A9CF-5511-4E15-A995-DC985C41DBED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3460A9CF-5511-4E15-A995-DC985C41DBED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{F99CB978-D076-44F3-ABEB-9EE333F79024} = {BDA21AC9-970F-4C72-B0F7-8251198FFE3A}
 		{CEEB70F8-D15B-459D-91B3-C16484266580} = {BDA21AC9-970F-4C72-B0F7-8251198FFE3A}
 		{906BED8C-A15C-413A-8E4F-AF6424F2010D} = {F99CB978-D076-44F3-ABEB-9EE333F79024}
+		{3460A9CF-5511-4E15-A995-DC985C41DBED} = {F99CB978-D076-44F3-ABEB-9EE333F79024}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4778558-694D-4447-8560-64336AF96A8D}
