@@ -1,25 +1,20 @@
 ﻿
 using DemoApp.Application.Features.Products.Queries.GetAllProducts;
 using DemoApp.Contracts.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoApp.Api.Controllers;
 
+[Authorize]
 [ApiController]
-[Route("[controller]/[action]")]
-public class ProductsController : ControllerBase
+[Route("api/[controller]/[action]")]
+public class ProductsController(ISender sender) : ControllerBase
 {
-    private readonly ISender _sender;
-
-    public ProductsController(ISender sender)
-    {
-        _sender = sender;
-    }
-
     [HttpGet]
     [ProducesResponseType(typeof(BaseResponse<IEnumerable<ProductResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll()
     {
-        var result = await this._sender.Send(new GetAllProductsQuery());
+        var result = await sender.Send(new GetAllProductsQuery());
         return Ok(new BaseResponse<IEnumerable<ProductResponse>>()
         {
             Data = result.ValueOrDefault,
@@ -33,7 +28,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(typeof(BaseResponse<int>), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
     {
-        var result = await this._sender.Send(command);
+        var result = await sender.Send(command);
         if (result.IsFailed)
             return BadRequest(new BaseResponse<int>()
             {
