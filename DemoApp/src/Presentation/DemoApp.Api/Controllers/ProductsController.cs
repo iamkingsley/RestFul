@@ -1,4 +1,4 @@
-﻿
+﻿using DemoApp.Api.Extensions;
 using DemoApp.Application.Features.Products.Queries.GetAllProducts;
 using DemoApp.Contracts.Dtos;
 using Microsoft.AspNetCore.Authorization;
@@ -15,12 +15,7 @@ public class ProductsController(ISender sender) : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var result = await sender.Send(new GetAllProductsQuery());
-        return Ok(new BaseResponse<IEnumerable<ProductResponse>>()
-        {
-            Data = result.ValueOrDefault,
-            Success = true,
-            StatusCode = StatusCodes.Status200OK,
-        });
+        return result.ToHttpResult();
     }
 
     [HttpPost]
@@ -29,19 +24,6 @@ public class ProductsController(ISender sender) : ControllerBase
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
     {
         var result = await sender.Send(command);
-        if (result.IsFailed)
-            return BadRequest(new BaseResponse<int>()
-            {
-                Success = false,
-                StatusCode = StatusCodes.Status400BadRequest,
-                Errors = result.Errors.Select(e => e.Message).ToList()
-            });
-
-        return Ok(new BaseResponse<int>()
-        {
-            Success = true,
-            StatusCode = StatusCodes.Status201Created,
-            Data = result.ValueOrDefault,
-        });
+        return result.ToHttpResult();
     }
 }
