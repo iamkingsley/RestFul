@@ -24,6 +24,6 @@ public class ProductsController(ISender sender) : ControllerBase
     public async Task<IActionResult> AddProduct([FromBody] AddProductCommand command)
     {
         var result = await sender.Send(command);
-        return result.ToHttpResult();
+        return result.ToHttpResult(statusCode: 201);
     }
 }

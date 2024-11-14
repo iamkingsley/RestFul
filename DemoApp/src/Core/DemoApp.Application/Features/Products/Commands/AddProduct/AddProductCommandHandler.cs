@@ -1,7 +1,9 @@
 ﻿
+using Microsoft.AspNetCore.Http.HttpResults;
+
 namespace DemoApp.Application.Features.Products.Commands.AddProduct;
 
-public class AddProductCommandHandler(IProductRepository productRepository, IMapper mapper)
+public class AddProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     : IRequestHandler<AddProductCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(AddProductCommand request, CancellationToken cancellationToken)
@@ -12,7 +14,10 @@ public class AddProductCommandHandler(IProductRepository productRepository, IMap
         {
             return Result.Fail(validationResult.Errors.Select(e => e.ErrorMessage).ToArray());
         }
-        await productRepository.AddAsync(mapper.Map<Product>(request), cancellationToken);
-        return Result.Ok(new Guid());
+
+        var product = mapper.Map<Product>(request);
+        await unitOfWork.Products.AddAsync(product, cancellationToken);
+        var value = await unitOfWork.SaveChangesAsync();
+        return value >= 1 ? Result.Ok(product.Id) : Result.Fail("Operation failed");
     }
 }

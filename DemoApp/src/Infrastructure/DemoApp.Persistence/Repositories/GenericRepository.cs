@@ -11,13 +11,12 @@ public class GenericRepository<T>(AppDbContext context) : IGenericRepository<T> 
     public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
         await context.Set<T>().AddAsync(entity, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(T entity)
     {
         context.Set<T>().Update(entity);
-        await context.SaveChangesAsync();
+        await Task.CompletedTask;
     }
 
     public async Task DeleteAsync(T entity)
@@ -26,7 +25,7 @@ public class GenericRepository<T>(AppDbContext context) : IGenericRepository<T> 
         if (record is not null)
         {
             context.Set<T>().Remove(entity);
-            await context.SaveChangesAsync();
+            await Task.CompletedTask;
         }
     }
 
