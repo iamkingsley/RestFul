@@ -5,9 +5,11 @@ using DemoApp.Identity.Data;
 using DemoApp.Identity.Services;
 using DemoApp.Identity.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DemoApp.Identity;
@@ -42,7 +44,10 @@ public static class IdentityServices
         services.AddAuthorization();
 
         services.AddScoped<IAuthentication, AuthenticationServices>();
-
+        
+        services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+        
         return services;
     }
 }
