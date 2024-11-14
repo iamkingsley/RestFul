@@ -1,25 +1,18 @@
 ﻿
 namespace DemoApp.Application.Features.Products.Commands.AddProduct;
 
-public class AddProductCommandHandler : IRequestHandler<AddProductCommand, Result<int>>
+public class AddProductCommandHandler(IProductRepository productRepository, IMapper mapper)
+    : IRequestHandler<AddProductCommand, Result<Guid>>
 {
-    private readonly IProductRepository _productRepository;
-    private readonly IMapper _mapper;
-
-    public AddProductCommandHandler(IProductRepository productRepository, IMapper mapper)
-    {
-        _productRepository = productRepository;
-        _mapper = mapper;
-    }
-    public async Task<Result<int>> Handle(AddProductCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
         var validator = new AddProductCommandValidator();
-        var validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {
             return Result.Fail(validationResult.Errors.Select(e => e.ErrorMessage).ToArray());
         }
-        _productRepository.AddProduct(_mapper.Map<Product>(request));
-        return Result.Ok(1);
+        await productRepository.AddAsync(mapper.Map<Product>(request), cancellationToken);
+        return Result.Ok(new Guid());
     }
 }

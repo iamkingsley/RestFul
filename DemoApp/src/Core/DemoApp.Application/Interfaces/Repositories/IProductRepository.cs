@@ -2,10 +2,6 @@
 
 namespace DemoApp.Application.Interfaces.Repositories;
 
-public interface IProductRepository
+public interface IProductRepository : IGenericRepository<Product>
 {
-    IEnumerable<Product> GetAllAsync();
-    Product? GetAsync(int id);
-    void DeleteAsync(int id);
-    int AddProduct(Product product);
 }
